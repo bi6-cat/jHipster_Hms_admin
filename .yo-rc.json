@@ -1,0 +1,33 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "jHipsterHmsAdmin",
+    "buildTool": "maven",
+    "cacheProvider": "ehcache",
+    "clientFramework": "angular",
+    "clientTestFrameworks": [],
+    "clientTheme": "none",
+    "creationTimestamp": 1746358084834,
+    "databaseType": "sql",
+    "devDatabaseType": "mssql",
+    "enableHibernateCache": true,
+    "enableTranslation": true,
+    "entities": [],
+    "feignClient": null,
+    "jhipsterVersion": "8.10.0",
+    "jwtSecretKey": "YjU1YzIwMzZiMTg4OGMwNDRmMGY4ZjBjNjlhMDMyZWEzOTlkZDFmYzI1YjAzMDQwMmIyZmU3YWM2MDljN2M4MGE2MGQ3MmFiYjkwN2Y2ZTFkYWFkMzA3MjZjOTVjZTgzYjU5YzE0NGRkZTliZjAyMzY5N2ZhZWJhMTdiMjlmM2I=",
+    "languages": ["en"],
+    "microfrontend": null,
+    "microfrontends": [],
+    "nativeLanguage": "en",
+    "packageName": "com.zett.jhipsterhms",
+    "prodDatabaseType": "mssql",
+    "reactive": false,
+    "serverPort": null,
+    "serviceDiscoveryType": null,
+    "syncUserWithIdp": null,
+    "testFrameworks": [],
+    "withAdminUi": true
+  }
+}
