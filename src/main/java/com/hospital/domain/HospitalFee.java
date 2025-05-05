@@ -25,10 +25,10 @@ public class HospitalFee implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "service_type")
+    @Column(name = "service_type", columnDefinition = "NVARCHAR(255)")
     private String serviceType;
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "NVARCHAR(255)")
     private String description;
 
     @Column(name = "amount", precision = 21, scale = 2)

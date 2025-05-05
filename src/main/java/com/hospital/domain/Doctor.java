@@ -24,19 +24,19 @@ public class Doctor implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", columnDefinition = "NVARCHAR(255)")
     private String name;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", columnDefinition = "NVARCHAR(255)")
     private String lastName;
 
-    @Column(name = "specialization")
+    @Column(name = "specialization", columnDefinition = "NVARCHAR(255)")
     private String specialization;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "email")
+    @Column(name = "email", columnDefinition = "NVARCHAR(255)")
     private String email;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

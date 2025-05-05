@@ -23,22 +23,22 @@ public class Prescription implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "medicine_name")
+    @Column(name = "medicine_name", columnDefinition = "NVARCHAR(255)")
     private String medicineName;
 
-    @Column(name = "form")
+    @Column(name = "form", columnDefinition = "NVARCHAR(255)")
     private String form;
 
     @Column(name = "dosage_mg")
     private Integer dosageMg;
 
-    @Column(name = "instruction")
+    @Column(name = "instruction", columnDefinition = "NVARCHAR(255)")
     private String instruction;
 
     @Column(name = "duration_days")
     private Integer durationDays;
 
-    @Column(name = "note")
+    @Column(name = "note", columnDefinition = "NVARCHAR(255)")
     private String note;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -23,7 +23,7 @@ public class Disease implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "disease_name")
+    @Column(name = "disease_name", columnDefinition = "NVARCHAR(255)")
     private String diseaseName;
 
     @Column(name = "diagnosis_date")

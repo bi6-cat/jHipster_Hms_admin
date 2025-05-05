@@ -24,22 +24,22 @@ public class Patient implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", columnDefinition = "NVARCHAR(255)")
     private String name;
 
-    @Column(name = "gender")
+    @Column(name = "gender", columnDefinition = "NVARCHAR(255)")
     private String gender;
 
-    @Column(name = "dob")
+    @Column(name = "dob", columnDefinition = "NVARCHAR(255)")
     private String dob;
 
-    @Column(name = "address")
+    @Column(name = "address", columnDefinition = "NVARCHAR(255)")
     private String address;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "email")
+    @Column(name = "email", columnDefinition = "NVARCHAR(255)")
     private String email;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

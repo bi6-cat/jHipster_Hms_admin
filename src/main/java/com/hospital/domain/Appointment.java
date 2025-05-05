@@ -32,19 +32,19 @@ public class Appointment implements Serializable {
     @Column(name = "end_time")
     private Instant endTime;
 
-    @Column(name = "reason")
+    @Column(name = "reason", columnDefinition = "NVARCHAR(255)")
     private String reason;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "NVARCHAR(255)")
     private String status;
 
     @Column(name = "phone")
     private String phone;
 
-    @Column(name = "location")
+    @Column(name = "location", columnDefinition = "NVARCHAR(255)")
     private String location;
 
-    @Column(name = "appointment_type")
+    @Column(name = "appointment_type", columnDefinition = "NVARCHAR(255)")
     private String appointmentType;
 
     @ManyToOne(fetch = FetchType.LAZY)

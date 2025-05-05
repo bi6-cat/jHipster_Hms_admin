@@ -24,7 +24,7 @@ public class Treatment implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "treatment_description")
+    @Column(name = "treatment_description", columnDefinition = "NVARCHAR(255)")
     private String treatmentDescription;
 
     @Column(name = "treatment_date")
