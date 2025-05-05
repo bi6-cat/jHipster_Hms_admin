@@ -48,6 +48,7 @@ spring:
       ddl-auto: update
 
   liquibase:
+    # enabled: fasle # Disable Liquibase in dev profile
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev
     parameters:
