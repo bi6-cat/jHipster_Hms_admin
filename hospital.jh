@@ -1,0 +1,96 @@
+application {
+  config {
+    baseName hospitalApp,
+    applicationType monolith,
+    packageName com.hospital,
+    authenticationType jwt,
+    prodDatabaseType postgresql,
+    buildTool maven,
+    clientFramework angular
+  }
+  entities *
+}
+
+entity Patient {
+  name String required,
+  gender String,
+  dob String,
+  address String,
+  phone String,
+  email String
+}
+
+entity Doctor {
+  name String required,
+  lastName String,
+  specialization String,
+  phone String,
+  email String
+}
+
+entity Appointment {
+  appointmentDate Instant,
+  startTime Instant,
+  endTime Instant,
+  reason String,
+  status String,
+  phone String,
+  location String,
+  appointmentType String
+}
+
+entity VitalSign {
+  measurementDate LocalDate,
+  bloodPressure String,
+  heartRate Integer,
+  respiratoryRate Integer,
+  temperature Double,
+  oxygenSaturation Integer,
+  bloodSugar Integer
+}
+
+entity Disease {
+  diseaseName String,
+  diagnosisDate LocalDate
+}
+
+entity Treatment {
+  treatmentDescription String,
+  treatmentDate LocalDate
+}
+
+entity HospitalFee {
+  serviceType String,
+  description String,
+  amount BigDecimal,
+  feeDate LocalDate,
+  phone String
+}
+
+entity Prescription {
+  medicineName String,
+  form String,
+  dosageMg Integer,
+  instruction String,
+  durationDays Integer,
+  note String
+}
+
+relationship ManyToOne {
+  Appointment{patient(name)} to Patient,
+  Appointment{doctor(name)} to Doctor,
+  VitalSign{patient(name)} to Patient,
+  Disease{patient(name)} to Patient,
+  Treatment{patient(name)} to Patient,
+  Treatment{doctor(name)} to Doctor,
+  Treatment{disease(diseaseName)} to Disease,
+  HospitalFee{appointment} to Appointment,
+  HospitalFee{patient(name)} to Patient,
+  Prescription{appointment} to Appointment,
+  Prescription{doctor(name)} to Doctor,
+  Prescription{patient(name)} to Patient
+}
+
+paginate all with pagination
+service all with serviceClass
+dto all with mapstruct

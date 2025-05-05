@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (treatment(); as treatmentRef) {
+      <div>
+        <h2 data-cy="treatmentDetailsHeading"><span jhiTranslate="hospitalApp.treatment.detail.title">Treatment</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ treatmentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.treatment.treatmentDescription">Treatment Description</span></dt>
+          <dd>
+            <span>{{ treatmentRef.treatmentDescription }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.treatment.treatmentDate">Treatment Date</span></dt>
+          <dd>
+            <span>{{ treatmentRef.treatmentDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.treatment.patient">Patient</span></dt>
+          <dd>
+            @if (treatment()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', treatment()!.patient?.id, 'view']">{{ treatmentRef.patient?.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.treatment.doctor">Doctor</span></dt>
+          <dd>
+            @if (treatment()!.doctor) {
+              <div>
+                <a [routerLink]="['/doctor', treatment()!.doctor?.id, 'view']">{{ treatmentRef.doctor?.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.treatment.disease">Disease</span></dt>
+          <dd>
+            @if (treatment()!.disease) {
+              <div>
+                <a [routerLink]="['/disease', treatment()!.disease?.id, 'view']">{{ treatmentRef.disease?.diseaseName }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/treatment', treatmentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (disease(); as diseaseRef) {
+      <div>
+        <h2 data-cy="diseaseDetailsHeading"><span jhiTranslate="hospitalApp.disease.detail.title">Disease</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ diseaseRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.disease.diseaseName">Disease Name</span></dt>
+          <dd>
+            <span>{{ diseaseRef.diseaseName }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.disease.diagnosisDate">Diagnosis Date</span></dt>
+          <dd>
+            <span>{{ diseaseRef.diagnosisDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.disease.patient">Patient</span></dt>
+          <dd>
+            @if (disease()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', disease()!.patient?.id, 'view']">{{ diseaseRef.patient?.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/disease', diseaseRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

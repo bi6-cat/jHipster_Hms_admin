@@ -22,7 +22,7 @@ module.exports = async (config, options, targetOptions) => {
   if (config.mode === 'development') {
     config.plugins.push(
       new WebpackNotifierPlugin({
-        title: 'J Hipster Hms Admin',
+        title: 'Hospital App',
         contentImage: path.join(__dirname, 'logo-jhipster.png'),
       }),
     );

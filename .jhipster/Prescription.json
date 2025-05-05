@@ -1,0 +1,59 @@
+{
+  "annotations": {
+    "changelogDate": "20250504115736"
+  },
+  "applications": ["hospitalApp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "medicineName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "form",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dosageMg",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "instruction",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "durationDays",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "note",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Prescription",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "appointment",
+      "relationshipName": "appointment",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "doctor",
+      "relationshipName": "doctor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

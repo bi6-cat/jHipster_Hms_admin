@@ -1,0 +1,164 @@
+<div>
+  <h2 id="page-heading" data-cy="VitalSignHeading">
+    <span jhiTranslate="hospitalApp.vitalSign.home.title">Vital Signs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="hospitalApp.vitalSign.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vital-sign"
+        [routerLink]="['/vital-sign/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hospitalApp.vitalSign.home.createLabel">Create a new Vital Sign</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (vitalSigns().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="hospitalApp.vitalSign.home.notFound">No Vital Signs found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="measurementDate">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.measurementDate">Measurement Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bloodPressure">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.bloodPressure">Blood Pressure</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="heartRate">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.heartRate">Heart Rate</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="respiratoryRate">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.respiratoryRate">Respiratory Rate</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="temperature">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.temperature">Temperature</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="oxygenSaturation">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.oxygenSaturation">Oxygen Saturation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bloodSugar">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.bloodSugar">Blood Sugar</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="patient.name">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.vitalSign.patient">Patient</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vitalSign of vitalSigns(); track trackId(vitalSign)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/vital-sign', vitalSign.id, 'view']">{{ vitalSign.id }}</a>
+              </td>
+              <td>{{ vitalSign.measurementDate | formatMediumDate }}</td>
+              <td>{{ vitalSign.bloodPressure }}</td>
+              <td>{{ vitalSign.heartRate }}</td>
+              <td>{{ vitalSign.respiratoryRate }}</td>
+              <td>{{ vitalSign.temperature }}</td>
+              <td>{{ vitalSign.oxygenSaturation }}</td>
+              <td>{{ vitalSign.bloodSugar }}</td>
+              <td>
+                @if (vitalSign.patient) {
+                  <div>
+                    <a [routerLink]="['/patient', vitalSign.patient.id, 'view']">{{ vitalSign.patient.name }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/vital-sign', vitalSign.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/vital-sign', vitalSign.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(vitalSign)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (vitalSigns().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

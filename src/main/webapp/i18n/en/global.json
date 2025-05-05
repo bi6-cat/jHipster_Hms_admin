@@ -1,6 +1,6 @@
 {
   "global": {
-    "title": "JHipsterHmsAdmin",
+    "title": "HospitalApp",
     "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
     "menu": {
       "home": "Home",
@@ -8,7 +8,15 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "adminAuthority": "Authority",
+        "patient": "Patient",
+        "doctor": "Doctor",
+        "appointment": "Appointment",
+        "vitalSign": "Vital Sign",
+        "disease": "Disease",
+        "treatment": "Treatment",
+        "hospitalFee": "Hospital Fee",
+        "prescription": "Prescription"
       },
       "account": {
         "main": "Account",

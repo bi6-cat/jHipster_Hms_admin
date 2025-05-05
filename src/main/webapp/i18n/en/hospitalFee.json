@@ -1,0 +1,30 @@
+{
+  "hospitalApp": {
+    "hospitalFee": {
+      "home": {
+        "title": "Hospital Fees",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Hospital Fee",
+        "createOrEditLabel": "Create or edit a Hospital Fee",
+        "notFound": "No Hospital Fees found"
+      },
+      "created": "A new Hospital Fee is created with identifier {{ param }}",
+      "updated": "A Hospital Fee is updated with identifier {{ param }}",
+      "deleted": "A Hospital Fee is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Hospital Fee {{ id }}?"
+      },
+      "detail": {
+        "title": "Hospital Fee"
+      },
+      "id": "ID",
+      "serviceType": "Service Type",
+      "description": "Description",
+      "amount": "Amount",
+      "feeDate": "Fee Date",
+      "phone": "Phone",
+      "appointment": "Appointment",
+      "patient": "Patient"
+    }
+  }
+}

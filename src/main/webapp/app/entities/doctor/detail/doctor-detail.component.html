@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (doctor(); as doctorRef) {
+      <div>
+        <h2 data-cy="doctorDetailsHeading"><span jhiTranslate="hospitalApp.doctor.detail.title">Doctor</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ doctorRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.doctor.name">Name</span></dt>
+          <dd>
+            <span>{{ doctorRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.doctor.lastName">Last Name</span></dt>
+          <dd>
+            <span>{{ doctorRef.lastName }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.doctor.specialization">Specialization</span></dt>
+          <dd>
+            <span>{{ doctorRef.specialization }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.doctor.phone">Phone</span></dt>
+          <dd>
+            <span>{{ doctorRef.phone }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.doctor.email">Email</span></dt>
+          <dd>
+            <span>{{ doctorRef.email }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/doctor', doctorRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,50 @@
+{
+  "annotations": {
+    "changelogDate": "20250504115732"
+  },
+  "applications": ["hospitalApp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "measurementDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "bloodPressure",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "heartRate",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "respiratoryRate",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "temperature",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "oxygenSaturation",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "bloodSugar",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "VitalSign",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

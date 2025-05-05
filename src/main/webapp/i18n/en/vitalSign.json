@@ -1,0 +1,31 @@
+{
+  "hospitalApp": {
+    "vitalSign": {
+      "home": {
+        "title": "Vital Signs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Vital Sign",
+        "createOrEditLabel": "Create or edit a Vital Sign",
+        "notFound": "No Vital Signs found"
+      },
+      "created": "A new Vital Sign is created with identifier {{ param }}",
+      "updated": "A Vital Sign is updated with identifier {{ param }}",
+      "deleted": "A Vital Sign is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Vital Sign {{ id }}?"
+      },
+      "detail": {
+        "title": "Vital Sign"
+      },
+      "id": "ID",
+      "measurementDate": "Measurement Date",
+      "bloodPressure": "Blood Pressure",
+      "heartRate": "Heart Rate",
+      "respiratoryRate": "Respiratory Rate",
+      "temperature": "Temperature",
+      "oxygenSaturation": "Oxygen Saturation",
+      "bloodSugar": "Blood Sugar",
+      "patient": "Patient"
+    }
+  }
+}

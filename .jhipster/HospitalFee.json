@@ -1,0 +1,48 @@
+{
+  "annotations": {
+    "changelogDate": "20250504115735"
+  },
+  "applications": ["hospitalApp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "serviceType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "amount",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "feeDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    }
+  ],
+  "name": "HospitalFee",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "appointment",
+      "relationshipName": "appointment",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

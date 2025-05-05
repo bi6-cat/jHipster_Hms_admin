@@ -1,0 +1,125 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-hospital-fee-heading"
+        data-cy="HospitalFeeCreateUpdateHeading"
+        jhiTranslate="hospitalApp.hospitalFee.home.createOrEditLabel"
+      >
+        Create or edit a Hospital Fee
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="hospitalApp.hospitalFee.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_serviceType" jhiTranslate="hospitalApp.hospitalFee.serviceType">Service Type</label>
+          <input
+            type="text"
+            class="form-control"
+            name="serviceType"
+            id="field_serviceType"
+            data-cy="serviceType"
+            formControlName="serviceType"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="hospitalApp.hospitalFee.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_amount" jhiTranslate="hospitalApp.hospitalFee.amount">Amount</label>
+          <input type="number" class="form-control" name="amount" id="field_amount" data-cy="amount" formControlName="amount" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_feeDate" jhiTranslate="hospitalApp.hospitalFee.feeDate">Fee Date</label>
+          <div class="input-group">
+            <input
+              id="field_feeDate"
+              data-cy="feeDate"
+              type="text"
+              class="form-control"
+              name="feeDate"
+              ngbDatepicker
+              #feeDateDp="ngbDatepicker"
+              formControlName="feeDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="feeDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_phone" jhiTranslate="hospitalApp.hospitalFee.phone">Phone</label>
+          <input type="text" class="form-control" name="phone" id="field_phone" data-cy="phone" formControlName="phone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_appointment" jhiTranslate="hospitalApp.hospitalFee.appointment">Appointment</label>
+          <select
+            class="form-control"
+            id="field_appointment"
+            data-cy="appointment"
+            name="appointment"
+            formControlName="appointment"
+            [compareWith]="compareAppointment"
+          >
+            <option [ngValue]="null"></option>
+            @for (appointmentOption of appointmentsSharedCollection; track $index) {
+              <option [ngValue]="appointmentOption">{{ appointmentOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_patient" jhiTranslate="hospitalApp.hospitalFee.patient">Patient</label>
+          <select
+            class="form-control"
+            id="field_patient"
+            data-cy="patient"
+            name="patient"
+            formControlName="patient"
+            [compareWith]="comparePatient"
+          >
+            <option [ngValue]="null"></option>
+            @for (patientOption of patientsSharedCollection; track $index) {
+              <option [ngValue]="patientOption">{{ patientOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

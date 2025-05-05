@@ -92,7 +92,7 @@ management:
 
 spring:
   application:
-    name: jHipsterHmsAdmin
+    name: hospitalApp
   docker:
     compose:
       enabled: true
@@ -130,9 +130,6 @@ spring:
       hibernate.jdbc.batch_size: 25
       hibernate.order_inserts: true
       hibernate.order_updates: true
-      # modify fetch size as necessary
-      hibernate.jdbc.fetch_size: 150
-      hibernate.criteria.literal_handling_mode: BIND
       hibernate.query.fail_on_pagination_over_collection_fetch: true
       hibernate.query.in_clause_parameter_padding: true
     hibernate:
@@ -155,13 +152,13 @@ spring:
           authorities-claim-name: auth
   task:
     execution:
-      thread-name-prefix: j-hipster-hms-admin-task-
+      thread-name-prefix: hospital-app-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: j-hipster-hms-admin-scheduling-
+      thread-name-prefix: hospital-app-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -192,7 +189,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'jHipsterHmsAdminApp'
+    name: 'hospitalApp'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #   allowed-origins: "http://localhost:8100,http://localhost:9000"
@@ -202,12 +199,12 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: jHipsterHmsAdmin@localhost
+    from: hospitalApp@localhost
   api-docs:
     default-include-pattern: /api/**
     management-include-pattern: /management/**
-    title: J Hipster Hms Admin API
-    description: J Hipster Hms Admin API documentation
+    title: Hospital App API
+    description: Hospital App API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

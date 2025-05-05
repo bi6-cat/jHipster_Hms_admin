@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (hospitalFee(); as hospitalFeeRef) {
+      <div>
+        <h2 data-cy="hospitalFeeDetailsHeading"><span jhiTranslate="hospitalApp.hospitalFee.detail.title">Hospital Fee</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.serviceType">Service Type</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.serviceType }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.description">Description</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.amount">Amount</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.amount }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.feeDate">Fee Date</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.feeDate | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.phone">Phone</span></dt>
+          <dd>
+            <span>{{ hospitalFeeRef.phone }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.appointment">Appointment</span></dt>
+          <dd>
+            @if (hospitalFee()!.appointment) {
+              <div>
+                <a [routerLink]="['/appointment', hospitalFee()!.appointment?.id, 'view']">{{ hospitalFeeRef.appointment?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.hospitalFee.patient">Patient</span></dt>
+          <dd>
+            @if (hospitalFee()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', hospitalFee()!.patient?.id, 'view']">{{ hospitalFeeRef.patient?.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/hospital-fee', hospitalFeeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

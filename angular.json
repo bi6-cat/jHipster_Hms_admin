@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "j-hipster-hms-admin": {
+    "hospital-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -82,15 +82,15 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "buildTarget": "j-hipster-hms-admin:build:development",
+            "buildTarget": "hospital-app:build:development",
             "port": 4200
           },
           "configurations": {
             "production": {
-              "buildTarget": "j-hipster-hms-admin:build:production"
+              "buildTarget": "hospital-app:build:production"
             },
             "development": {
-              "buildTarget": "j-hipster-hms-admin:build:development"
+              "buildTarget": "hospital-app:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -111,6 +111,7 @@
       "path": "./target/angular/",
       "environment": "all"
     },
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": false
   }
 }

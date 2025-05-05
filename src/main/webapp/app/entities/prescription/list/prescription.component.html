@@ -1,0 +1,182 @@
+<div>
+  <h2 id="page-heading" data-cy="PrescriptionHeading">
+    <span jhiTranslate="hospitalApp.prescription.home.title">Prescriptions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="hospitalApp.prescription.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-prescription"
+        [routerLink]="['/prescription/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hospitalApp.prescription.home.createLabel">Create a new Prescription</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (prescriptions().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="hospitalApp.prescription.home.notFound">No Prescriptions found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="medicineName">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.medicineName">Medicine Name</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="form">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.form">Form</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dosageMg">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.dosageMg">Dosage Mg</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="instruction">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.instruction">Instruction</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="durationDays">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.durationDays">Duration Days</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="note">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.note">Note</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="appointment.id">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.appointment">Appointment</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="doctor.name">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.doctor">Doctor</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="patient.name">
+              <div class="d-flex">
+                <span jhiTranslate="hospitalApp.prescription.patient">Patient</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (prescription of prescriptions(); track trackId(prescription)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/prescription', prescription.id, 'view']">{{ prescription.id }}</a>
+              </td>
+              <td>{{ prescription.medicineName }}</td>
+              <td>{{ prescription.form }}</td>
+              <td>{{ prescription.dosageMg }}</td>
+              <td>{{ prescription.instruction }}</td>
+              <td>{{ prescription.durationDays }}</td>
+              <td>{{ prescription.note }}</td>
+              <td>
+                @if (prescription.appointment) {
+                  <div>
+                    <a [routerLink]="['/appointment', prescription.appointment.id, 'view']">{{ prescription.appointment.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (prescription.doctor) {
+                  <div>
+                    <a [routerLink]="['/doctor', prescription.doctor.id, 'view']">{{ prescription.doctor.name }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (prescription.patient) {
+                  <div>
+                    <a [routerLink]="['/patient', prescription.patient.id, 'view']">{{ prescription.patient.name }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/prescription', prescription.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/prescription', prescription.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(prescription)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (prescriptions().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }" />
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

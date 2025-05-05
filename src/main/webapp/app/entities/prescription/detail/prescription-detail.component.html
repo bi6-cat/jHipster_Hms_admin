@@ -1,0 +1,78 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (prescription(); as prescriptionRef) {
+      <div>
+        <h2 data-cy="prescriptionDetailsHeading"><span jhiTranslate="hospitalApp.prescription.detail.title">Prescription</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.medicineName">Medicine Name</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.medicineName }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.form">Form</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.form }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.dosageMg">Dosage Mg</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.dosageMg }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.instruction">Instruction</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.instruction }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.durationDays">Duration Days</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.durationDays }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.note">Note</span></dt>
+          <dd>
+            <span>{{ prescriptionRef.note }}</span>
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.appointment">Appointment</span></dt>
+          <dd>
+            @if (prescription()!.appointment) {
+              <div>
+                <a [routerLink]="['/appointment', prescription()!.appointment?.id, 'view']">{{ prescriptionRef.appointment?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.doctor">Doctor</span></dt>
+          <dd>
+            @if (prescription()!.doctor) {
+              <div>
+                <a [routerLink]="['/doctor', prescription()!.doctor?.id, 'view']">{{ prescriptionRef.doctor?.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="hospitalApp.prescription.patient">Patient</span></dt>
+          <dd>
+            @if (prescription()!.patient) {
+              <div>
+                <a [routerLink]="['/patient', prescription()!.patient?.id, 'view']">{{ prescriptionRef.patient?.name }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/prescription', prescriptionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

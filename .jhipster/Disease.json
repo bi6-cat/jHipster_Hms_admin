@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20250504115733"
+  },
+  "applications": ["hospitalApp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "diseaseName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "diagnosisDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Disease",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

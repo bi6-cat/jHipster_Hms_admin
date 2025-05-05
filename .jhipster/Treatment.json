@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20250504115734"
+  },
+  "applications": ["hospitalApp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "treatmentDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "treatmentDate",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "name": "Treatment",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "patient",
+      "relationshipName": "patient",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "doctor",
+      "relationshipName": "doctor",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "diseaseName",
+      "otherEntityName": "disease",
+      "relationshipName": "disease",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

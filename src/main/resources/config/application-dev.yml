@@ -18,7 +18,7 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    com.zett.jhipsterhms: DEBUG
+    com.hospital: DEBUG
 
 spring:
   devtools:
@@ -32,20 +32,24 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://localhost:1433;database=jHipsterHmsAdmin;encrypt=false
-    username: SA
-    password: yourStrong(!)Password
+    url: jdbc:sqlserver://localhost:1433;databaseName=hms_hqt;encrypt=true;trustServerCertificate=true
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: abcd@1234
     hikari:
       poolName: Hikari
       auto-commit: false
-      data-source-properties:
-        cachePrepStmts: true
-        prepStmtCacheSize: 250
-        prepStmtCacheSqlLimit: 2048
-        useServerPrepStmts: true
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServer2012Dialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: dev, faker
+    contexts: dev
+    parameters:
+      datetimeType: datetime
   mail:
     host: localhost
     port: 25

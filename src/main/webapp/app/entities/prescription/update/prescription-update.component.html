@@ -1,0 +1,142 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-prescription-heading"
+        data-cy="PrescriptionCreateUpdateHeading"
+        jhiTranslate="hospitalApp.prescription.home.createOrEditLabel"
+      >
+        Create or edit a Prescription
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="hospitalApp.prescription.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_medicineName" jhiTranslate="hospitalApp.prescription.medicineName">Medicine Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="medicineName"
+            id="field_medicineName"
+            data-cy="medicineName"
+            formControlName="medicineName"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_form" jhiTranslate="hospitalApp.prescription.form">Form</label>
+          <input type="text" class="form-control" name="form" id="field_form" data-cy="form" formControlName="form" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dosageMg" jhiTranslate="hospitalApp.prescription.dosageMg">Dosage Mg</label>
+          <input type="number" class="form-control" name="dosageMg" id="field_dosageMg" data-cy="dosageMg" formControlName="dosageMg" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_instruction" jhiTranslate="hospitalApp.prescription.instruction">Instruction</label>
+          <input
+            type="text"
+            class="form-control"
+            name="instruction"
+            id="field_instruction"
+            data-cy="instruction"
+            formControlName="instruction"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_durationDays" jhiTranslate="hospitalApp.prescription.durationDays">Duration Days</label>
+          <input
+            type="number"
+            class="form-control"
+            name="durationDays"
+            id="field_durationDays"
+            data-cy="durationDays"
+            formControlName="durationDays"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_note" jhiTranslate="hospitalApp.prescription.note">Note</label>
+          <input type="text" class="form-control" name="note" id="field_note" data-cy="note" formControlName="note" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_appointment" jhiTranslate="hospitalApp.prescription.appointment">Appointment</label>
+          <select
+            class="form-control"
+            id="field_appointment"
+            data-cy="appointment"
+            name="appointment"
+            formControlName="appointment"
+            [compareWith]="compareAppointment"
+          >
+            <option [ngValue]="null"></option>
+            @for (appointmentOption of appointmentsSharedCollection; track $index) {
+              <option [ngValue]="appointmentOption">{{ appointmentOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_doctor" jhiTranslate="hospitalApp.prescription.doctor">Doctor</label>
+          <select
+            class="form-control"
+            id="field_doctor"
+            data-cy="doctor"
+            name="doctor"
+            formControlName="doctor"
+            [compareWith]="compareDoctor"
+          >
+            <option [ngValue]="null"></option>
+            @for (doctorOption of doctorsSharedCollection; track $index) {
+              <option [ngValue]="doctorOption">{{ doctorOption.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_patient" jhiTranslate="hospitalApp.prescription.patient">Patient</label>
+          <select
+            class="form-control"
+            id="field_patient"
+            data-cy="patient"
+            name="patient"
+            formControlName="patient"
+            [compareWith]="comparePatient"
+          >
+            <option [ngValue]="null"></option>
+            @for (patientOption of patientsSharedCollection; track $index) {
+              <option [ngValue]="patientOption">{{ patientOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

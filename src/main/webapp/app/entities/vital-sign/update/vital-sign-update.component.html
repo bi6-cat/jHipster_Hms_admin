@@ -1,0 +1,143 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-vital-sign-heading" data-cy="VitalSignCreateUpdateHeading" jhiTranslate="hospitalApp.vitalSign.home.createOrEditLabel">
+        Create or edit a Vital Sign
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="hospitalApp.vitalSign.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_measurementDate" jhiTranslate="hospitalApp.vitalSign.measurementDate"
+            >Measurement Date</label
+          >
+          <div class="input-group">
+            <input
+              id="field_measurementDate"
+              data-cy="measurementDate"
+              type="text"
+              class="form-control"
+              name="measurementDate"
+              ngbDatepicker
+              #measurementDateDp="ngbDatepicker"
+              formControlName="measurementDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="measurementDateDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bloodPressure" jhiTranslate="hospitalApp.vitalSign.bloodPressure">Blood Pressure</label>
+          <input
+            type="text"
+            class="form-control"
+            name="bloodPressure"
+            id="field_bloodPressure"
+            data-cy="bloodPressure"
+            formControlName="bloodPressure"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_heartRate" jhiTranslate="hospitalApp.vitalSign.heartRate">Heart Rate</label>
+          <input type="number" class="form-control" name="heartRate" id="field_heartRate" data-cy="heartRate" formControlName="heartRate" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_respiratoryRate" jhiTranslate="hospitalApp.vitalSign.respiratoryRate"
+            >Respiratory Rate</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="respiratoryRate"
+            id="field_respiratoryRate"
+            data-cy="respiratoryRate"
+            formControlName="respiratoryRate"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_temperature" jhiTranslate="hospitalApp.vitalSign.temperature">Temperature</label>
+          <input
+            type="number"
+            class="form-control"
+            name="temperature"
+            id="field_temperature"
+            data-cy="temperature"
+            formControlName="temperature"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_oxygenSaturation" jhiTranslate="hospitalApp.vitalSign.oxygenSaturation"
+            >Oxygen Saturation</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="oxygenSaturation"
+            id="field_oxygenSaturation"
+            data-cy="oxygenSaturation"
+            formControlName="oxygenSaturation"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_bloodSugar" jhiTranslate="hospitalApp.vitalSign.bloodSugar">Blood Sugar</label>
+          <input
+            type="number"
+            class="form-control"
+            name="bloodSugar"
+            id="field_bloodSugar"
+            data-cy="bloodSugar"
+            formControlName="bloodSugar"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_patient" jhiTranslate="hospitalApp.vitalSign.patient">Patient</label>
+          <select
+            class="form-control"
+            id="field_patient"
+            data-cy="patient"
+            name="patient"
+            formControlName="patient"
+            [compareWith]="comparePatient"
+          >
+            <option [ngValue]="null"></option>
+            @for (patientOption of patientsSharedCollection; track $index) {
+              <option [ngValue]="patientOption">{{ patientOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
