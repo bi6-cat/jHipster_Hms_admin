@@ -217,6 +217,7 @@ angular-cli removes postcss-rtl processed inline css, processed rules must be ad
 ========================================================================== */
 /* page-ribbon.component.scss */
 .ribbon {
+  display: none !important;
   left: -3.5em;
   -moz-transform: rotate(-45deg);
   -ms-transform: rotate(-45deg);
