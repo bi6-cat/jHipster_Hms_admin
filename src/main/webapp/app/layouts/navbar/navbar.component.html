@@ -209,6 +209,13 @@
                 </a>
               </li>
             }
+            <!-- Export PDF -->
+            <li>
+              <a class="dropdown-item" (click)="exportAppointmentsByMonthPdf()" style="cursor: pointer">
+                <i class="fa-solid fa-file-pdf"></i>
+                Xuất PDF
+              </a>
+            </li>
           </ul>
         </li>
         @if (languages && languages.length > 1) {
