@@ -51,6 +51,24 @@ export default class NavbarComponent implements OnInit {
     });
   }
 
+  exportRevenueByMonthPdf(): void {
+    this.http.get('/api/report/revenue-by-month/pdf', { responseType: 'blob' }).subscribe(blob => {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'revenue_by_month.pdf';
+      link.click();
+    });
+  }
+
+  exportDiseaseByGenderPdf(): void {
+    this.http.get('/api/report/disease-by-gender/pdf', { responseType: 'blob' }).subscribe(blob => {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'disease_by_gender.pdf';
+      link.click();
+    });
+  }
+
   ngOnInit(): void {
     this.entitiesNavbarItems = EntityNavbarItems;
     this.profileService.getProfileInfo().subscribe(profileInfo => {

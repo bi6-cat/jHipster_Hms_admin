@@ -143,6 +143,43 @@
             </ul>
           </li>
         }
+        <!-- Menu Xuất PDF -->
+        <li
+          *jhiHasAnyAuthority="'ROLE_ADMIN'"
+          ngbDropdown
+          class="nav-item dropdown pointer"
+          display="dynamic"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="pdf-menu" data-cy="pdfMenu">
+            <span>
+              <fa-icon icon="file-pdf"></fa-icon>
+              <span>Xuất PDF</span>
+            </span>
+          </a>
+          <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="pdf-menu">
+            <li>
+              <a class="dropdown-item" (click)="exportAppointmentsByMonthPdf()" style="cursor: pointer">
+                <i class="fa-solid fa-file-pdf"></i>
+                Xuất báo cáo lịch hẹn
+              </a>
+            </li>
+            <!-- Thêm sau nút xuất báo cáo PDF lịch hẹn -->
+            <li>
+              <a class="dropdown-item" (click)="exportRevenueByMonthPdf()" style="cursor: pointer">
+                <i class="fa-solid fa-file-pdf"></i>
+                Xuất báo cáo doanh thu
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="exportDiseaseByGenderPdf()" style="cursor: pointer">
+                <i class="fa-solid fa-file-pdf"></i>
+                Xuất báo cáo bệnh theo giới tính
+              </a>
+            </li>
+          </ul>
+        </li>
         <li
           *jhiHasAnyAuthority="'ROLE_ADMIN'"
           ngbDropdown
@@ -209,13 +246,6 @@
                 </a>
               </li>
             }
-            <!-- Export PDF -->
-            <li>
-              <a class="dropdown-item" (click)="exportAppointmentsByMonthPdf()" style="cursor: pointer">
-                <i class="fa-solid fa-file-pdf"></i>
-                Xuất PDF
-              </a>
-            </li>
           </ul>
         </li>
         @if (languages && languages.length > 1) {
