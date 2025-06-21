@@ -50,7 +50,7 @@ spring:
   liquibase:
     # enabled: fasle # Disable Liquibase in prod profile
     # Remove 'faker' if you do not want the sample data to be loaded automatically
-    contexts: prod
+    contexts: dev
     parameters:
       datetimeType: datetime
   mail:
@@ -133,3 +133,10 @@ jhipster:
 # ===================================================================
 
 # application:
+cors:
+  allowed-origins: http://13.250.117.33:9000
+  allowed-methods: '*'
+  allowed-headers: '*'
+  exposed-headers: 'Authorization,Link,X-Total-Count'
+  allow-credentials: true
+  max-age: 1800
