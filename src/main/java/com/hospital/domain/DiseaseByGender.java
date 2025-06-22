@@ -10,9 +10,10 @@ public class DiseaseByGender {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "gender", columnDefinition = "NVARCHAR(50)")
     private String gender;
 
-    @Column(name = "disease_name")
+    @Column(name = "disease_name", columnDefinition = "NVARCHAR(255)")
     private String diseaseName;
 
     @Column(name = "total_cases")
